@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D2EBD3"
+    tools:context=".Registration">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="A R K P L A Y Z O N E"
+        android:textColor="#293F02"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:layout_marginEnd="20dp"
+        android:stretchColumns="*"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name">
+
+
+        <TableRow android:padding="8dp">
+
+            <EditText
+                android:id="@+id/fname"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:hint="First Name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/mname"
+                android:layout_width="0dp"
+                android:textSize="16dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:hint="Middle Name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/lname"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+
+                android:textSize="16dp"
+                android:hint="Last Name"
+                android:inputType="text" />
+        </TableRow>
+
+
+        <TableRow android:padding="8dp">
+
+            <EditText
+                android:id="@+id/city"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:hint="City"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/postalcode"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:hint="Postal Code"
+                android:textSize="16dp"
+
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/street"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:hint="Street No"
+                android:textSize="16dp"
+
+                android:inputType="text" />
+        </TableRow>
+
+
+        <TableRow android:padding="8dp">
+
+            <EditText
+                android:id="@+id/sname"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:hint="street name"
+                android:textSize="16dp"
+
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:textSize="16dp"
+
+                android:hint="apartment"
+                android:inputType="textEmailAddress" />
+        </TableRow>
+
+
+        <TableRow android:padding="8dp">
+
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="email"
+                android:textSize="16dp"
+
+                android:inputType="textEmailAddress" />
+        </TableRow>
+
+
+        <TableRow android:padding="8dp">
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="phone"
+
+                android:textSize="16dp"
+
+                android:inputType="phone" />
+        </TableRow>
+
+
+        <TableRow android:padding="8dp">
+
+            <EditText
+                android:id="@+id/editTextTextPassword2"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:textSize="16dp"
+                android:hint="password"
+
+                android:inputType="textPassword" />
+        </TableRow>
+
+
+        <TableRow android:padding="8dp">
+
+            <EditText
+                android:id="@+id/editTextTextPassword3"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:textSize="16dp"
+
+                android:hint="confirm password"
+                android:inputType="textPassword" />
+        </TableRow>
+
+        <TableRow android:padding="8dp">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:backgroundTint="#4E7800"
+                android:text="Button" />
+        </TableRow>
+        <TableRow android:padding="8dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Have an Account? Login here" />
+        </TableRow>
+        <TableRow android:padding="8dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="─────────  or  ─────────" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="297dp"
+            android:layout_height="48dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/imageButtonnone"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:backgroundTint="#D2EBD3"
+                android:contentDescription="Login with Twitter"
+                android:scaleType="fitCenter"
+                />
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#D2EBD3"
+                android:contentDescription="Login with Twitter"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/google_icons_09_512_removebg_preview" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#D2EBD3"
+                android:contentDescription="Login with Twitter"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/facebook_logo_facebook_icon_transparent_free_png_removebg_preview" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:backgroundTint="#D2EBD3"
+                android:contentDescription="Login with Twitter"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/png_clipart_twitter_twitter_thumbnail_removebg_preview" />
+            <ImageView
+                android:id="@+id/imageButtonnone1"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:backgroundTint="#D2EBD3"
+                android:contentDescription="Login with Twitter"
+                android:scaleType="fitCenter"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="361dp"
+            android:layout_height="21dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="All Rights Reserved © 2025 - ARKEVER LTD" />
+        </TableRow>
+
+
+    </TableLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
