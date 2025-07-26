@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             
             val intent = Intent(this , Registration::class.java)
             startActivity(intent)
-            finish()
+
         }
 
 

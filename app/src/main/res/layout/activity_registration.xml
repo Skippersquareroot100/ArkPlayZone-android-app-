@@ -114,7 +114,7 @@
                 android:inputType="text" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/apartment"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -129,7 +129,7 @@
 
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/email"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -160,7 +160,7 @@
         <TableRow android:padding="8dp">
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
+                android:id="@+id/pass"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -175,7 +175,7 @@
         <TableRow android:padding="8dp">
 
             <EditText
-                android:id="@+id/editTextTextPassword3"
+                android:id="@+id/cpass"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -189,24 +189,48 @@
         <TableRow android:padding="8dp">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/regis"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:backgroundTint="#4E7800"
-                android:text="Button" />
-        </TableRow>
-        <TableRow android:padding="8dp">
+                android:text="Register" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Have an Account? Login here" />
         </TableRow>
+
+
+           <TableRow android:padding="8dp">
+
+         <!-- -->
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:layout_weight="1"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:id="@+id/registraionerror"
+                       android:layout_width="match_parent"
+                       android:layout_weight="1"
+                       android:gravity="center"
+                       android:textColor="#F00000"
+                       android:textStyle="bold"
+                       android:layout_height="wrap_content"
+                       android:visibility="gone"
+                       android:text=" " />
+
+                   <TextView
+                       android:id="@+id/logpage"
+                       android:layout_width="match_parent"
+                       android:layout_weight="1"
+                       android:gravity="center"
+                       android:layout_height="wrap_content"
+                       android:textStyle="bold"
+                       android:text="Have an Account? Login here" />
+
+               </LinearLayout>
+           </TableRow>
         <TableRow android:padding="8dp">
 
             <TextView
