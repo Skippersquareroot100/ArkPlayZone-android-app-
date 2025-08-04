@@ -11,39 +11,65 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Registration : AppCompatActivity() {
+
+    private lateinit var rerr: TextView
+    private lateinit var redir: TextView
+    private lateinit var regi: Button
+
+    private lateinit var fname: EditText
+    private lateinit var mname: EditText
+    private lateinit var lname: EditText
+    private lateinit var city: EditText
+    private lateinit var pcode: EditText
+    private lateinit var phone: EditText
+    private lateinit var stno: EditText
+    private lateinit var sname: EditText
+    private lateinit var email: EditText
+    private lateinit var pass: EditText
+    private lateinit var cpass: EditText
+    private lateinit var aprt: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_registration)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        var rerr = findViewById<TextView>(R.id.registraionerror)
-        var redir = findViewById<TextView>(R.id.logpage)
-        var regi = findViewById<Button>(R.id.regis)
-        var fname = findViewById<EditText>(R.id.fname)
-        var mname = findViewById<EditText>(R.id.mname)
-        var lname = findViewById<EditText>(R.id.lname)
-        var city = findViewById<EditText>(R.id.city)
-        var pcode = findViewById<EditText>(R.id.postalcode)
-        var stno = findViewById<EditText>(R.id.street)
-        var sname = findViewById<EditText>(R.id.sname)
-        var email = findViewById<EditText>(R.id.email)
-        var pass = findViewById<EditText>(R.id.pass)
-        var cpass = findViewById<EditText>(R.id.cpass)
-        var aprt = findViewById<EditText>(R.id.apartment)
 
+        // Call POST /manager/hello when page opens
+        testHello()
 
+        // UI bindings
+        rerr = findViewById(R.id.registraionerror)
+        redir = findViewById(R.id.logpage)
+        regi = findViewById(R.id.regis)
 
+        fname = findViewById(R.id.fname)
+        mname = findViewById(R.id.mname)
+        lname = findViewById(R.id.lname)
+        city = findViewById(R.id.city)
+        pcode = findViewById(R.id.postalcode)
+        phone = findViewById(R.id.editTextPhone)
+        stno = findViewById(R.id.street)
+        sname = findViewById(R.id.sname)
+        email = findViewById(R.id.email)
+        pass = findViewById(R.id.pass)
+        cpass = findViewById(R.id.cpass)
+        aprt = findViewById(R.id.apartment)
 
         regi.setOnClickListener {
+            rerr.visibility = TextView.INVISIBLE
 
             if (fname.text.isEmpty() ||
-                mname.text.isEmpty() ||
                 lname.text.isEmpty() ||
                 city.text.isEmpty() ||
                 pcode.text.isEmpty() ||
@@ -52,34 +78,82 @@ class Registration : AppCompatActivity() {
                 email.text.isEmpty() ||
                 pass.text.isEmpty() ||
                 cpass.text.isEmpty() ||
-                aprt.text.isEmpty()) {
-
-                rerr.gravity= Gravity.CENTER
-                rerr.text = "Complete All Feilds First !"
-                rerr.visibility = TextView.VISIBLE
-
-            }
-            else if(pass.text.toString()!=cpass.text.toString())
-            {
-                rerr.gravity= Gravity.CENTER
-                rerr.text = "password doesnot macthed !"
-                rerr.visibility = TextView.VISIBLE
-            }
-            else
-            {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                aprt.text.isEmpty() ||
+                phone.text.isEmpty()
+            ) {
+                showError("Complete all fields first!")
+                return@setOnClickListener
             }
 
+            if (pass.text.toString() != cpass.text.toString()) {
+                showError("Password does not match!")
+                return@setOnClickListener
+            }
 
+            val dto = StaffDto(
+                firstName = fname.text.toString(),
+                middleName = if (mname.text.isEmpty()) null else mname.text.toString(),
+                lastName = lname.text.toString(),
+                street_no = stno.text.toString(),
+                street_name = sname.text.toString(),
+                apartment_name = aprt.text.toString(),
+                city = city.text.toString(),
+                state = "Dhaka",
+                postal_code = pcode.text.toString(),
+                deduction = 0,
+                overtime = 0,
+                role = "android",
+                email = email.text.toString(),
+                phone = phone.text.toString(),
+                salary = 1000,
+                password = pass.text.toString()
+            )
+
+            RetrofitClient.instance.createStaff(dto)
+                .enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        if (response.isSuccessful) {
+                            Log.d("Register", "Staff created!")
+                            val intent = Intent(this@Registration, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Log.e("Register", "Failed: ${response.code()} - ${response.message()}")
+                            showError("Registration failed: ${response.code()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.e("Register", "Error: ${t.localizedMessage}", t)
+                        showError("Error: ${t.localizedMessage}")
+                    }
+                })
         }
 
         redir.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-
+            startActivity(Intent(this, MainActivity::class.java))
         }
+    }
 
+    private fun testHello() {
+        RetrofitClient.instance.hello().enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    Log.d("HelloTest", "Backend says hello!")
+                } else {
+                    Log.e("HelloTest", "Hello call failed: ${response.code()} - ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.e("HelloTest", "Network error: ${t.localizedMessage}", t)
+            }
+        })
+    }
+
+    private fun showError(message: String) {
+        rerr.gravity = Gravity.CENTER
+        rerr.text = message
+        rerr.visibility = TextView.VISIBLE
     }
 }
