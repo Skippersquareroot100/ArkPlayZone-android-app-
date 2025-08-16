@@ -1,4 +1,4 @@
-package com.arkever.indoorplayground
+package com.arkever.indoorplayground.model.DTOs
 
 data class StaffDto(
     val firstName: String,
@@ -16,5 +16,6 @@ data class StaffDto(
     val email: String,
     val phone: String,
     val salary: Int,
-    val password: String
+    val password: String,
+    val file :String
 )

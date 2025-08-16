@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D2EBD3"
-    tools:context=".Registration">
+    tools:context=".view.Registration">
 
     <TextView
         android:id="@+id/name"
@@ -22,6 +22,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/pBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        android:indeterminate="true"
+        app:layout_constraintTop_toTopOf="parent"
+        android:indeterminateDrawable="@drawable/progressbar_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="0dp"
@@ -31,7 +44,6 @@
         android:layout_marginEnd="20dp"
         android:stretchColumns="*"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name">
 
@@ -138,6 +150,7 @@
                 android:textSize="16dp"
 
                 android:inputType="textEmailAddress" />
+
         </TableRow>
 
 
@@ -155,6 +168,7 @@
 
                 android:inputType="phone" />
         </TableRow>
+
 
 
         <TableRow android:padding="8dp">
@@ -312,7 +326,6 @@
 
 
     </TableLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

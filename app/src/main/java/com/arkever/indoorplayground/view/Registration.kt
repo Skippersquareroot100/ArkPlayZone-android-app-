@@ -1,19 +1,21 @@
-package com.arkever.indoorplayground
+package com.arkever.indoorplayground.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.ViewModelProvider
+import com.arkever.indoorplayground.R
+import com.arkever.indoorplayground.model.DTOs.StaffDto
+import com.arkever.indoorplayground.viewmodel.StaffViewModel
 
 class Registration : AppCompatActivity() {
 
@@ -33,6 +35,9 @@ class Registration : AppCompatActivity() {
     private lateinit var pass: EditText
     private lateinit var cpass: EditText
     private lateinit var aprt: EditText
+    private lateinit var pbar :ProgressBar
+    private lateinit var viewModel: StaffViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +50,18 @@ class Registration : AppCompatActivity() {
             insets
         }
 
-        // Call POST /manager/hello when page opens
-        testHello()
+        viewModel = ViewModelProvider(this)[StaffViewModel::class.java]
 
-        // UI bindings
+
+        bindViews()
+        observeViewModel()
+    }
+
+    private fun bindViews()
+    {
         rerr = findViewById(R.id.registraionerror)
         redir = findViewById(R.id.logpage)
         regi = findViewById(R.id.regis)
-
         fname = findViewById(R.id.fname)
         mname = findViewById(R.id.mname)
         lname = findViewById(R.id.lname)
@@ -65,31 +74,57 @@ class Registration : AppCompatActivity() {
         pass = findViewById(R.id.pass)
         cpass = findViewById(R.id.cpass)
         aprt = findViewById(R.id.apartment)
+        pbar = findViewById(R.id.pBar)
+
 
         regi.setOnClickListener {
-            rerr.visibility = TextView.INVISIBLE
-
-            if (fname.text.isEmpty() ||
-                lname.text.isEmpty() ||
-                city.text.isEmpty() ||
-                pcode.text.isEmpty() ||
-                stno.text.isEmpty() ||
-                sname.text.isEmpty() ||
-                email.text.isEmpty() ||
-                pass.text.isEmpty() ||
-                cpass.text.isEmpty() ||
-                aprt.text.isEmpty() ||
-                phone.text.isEmpty()
+            if (fname.text.isEmpty() || lname.text.isEmpty() || city.text.isEmpty() ||
+                pcode.text.isEmpty() || stno.text.isEmpty() || sname.text.isEmpty() ||
+                email.text.isEmpty() || pass.text.isEmpty() || cpass.text.isEmpty() ||
+                aprt.text.isEmpty() || phone.text.isEmpty()
             ) {
                 showError("Complete all fields first!")
                 return@setOnClickListener
             }
 
-            if (pass.text.toString() != cpass.text.toString()) {
-                showError("Password does not match!")
+
+            val nameRegex = Regex("^[a-zA-Z]+\$")
+            if (!nameRegex.matches(fname.text.toString())) {
+                showError("First name must contain only letters.")
                 return@setOnClickListener
             }
 
+            if (!nameRegex.matches(lname.text.toString())) {
+                showError("Last name must contain only letters.")
+                return@setOnClickListener
+            }
+
+
+            val phoneRegex = Regex("^01\\d{8,9}\$")
+            if (!phoneRegex.matches(phone.text.toString())) {
+                showError("Phone number must start with 01 and contain 11 digits.")
+                return@setOnClickListener
+            }
+
+
+            val passwordText = pass.text.toString()
+            val confirmPasswordText = cpass.text.toString()
+
+            if (passwordText.length < 6) {
+                showError("Password must be at least 6 characters long.")
+                return@setOnClickListener
+            }
+
+            val passwordRegex = Regex("^(?=.*[a-z])(?=.*[@#\$&]).+")
+            if (!passwordRegex.matches(passwordText)) {
+                showError("Password must contain at least one lowercase letter and one special character (@, #, \$, &).")
+                return@setOnClickListener
+            }
+
+            if (passwordText != confirmPasswordText) {
+                showError("Passwords do not match!")
+                return@setOnClickListener
+            }
             val dto = StaffDto(
                 firstName = fname.text.toString(),
                 middleName = if (mname.text.isEmpty()) null else mname.text.toString(),
@@ -106,49 +141,41 @@ class Registration : AppCompatActivity() {
                 email = email.text.toString(),
                 phone = phone.text.toString(),
                 salary = 1000,
-                password = pass.text.toString()
+                password = pass.text.toString(),
+                file = "hello.jpg"
             )
-
-            RetrofitClient.instance.createStaff(dto)
-                .enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        if (response.isSuccessful) {
-                            Log.d("Register", "Staff created!")
-                            val intent = Intent(this@Registration, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            Log.e("Register", "Failed: ${response.code()} - ${response.message()}")
-                            showError("Registration failed: ${response.code()}")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.e("Register", "Error: ${t.localizedMessage}", t)
-                        showError("Error: ${t.localizedMessage}")
-                    }
-                })
+            showLoading(true)
+            viewModel.registerStaff(dto)
         }
 
         redir.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+
     }
 
-    private fun testHello() {
-        RetrofitClient.instance.hello().enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful) {
-                    Log.d("HelloTest", "Backend says hello!")
-                } else {
-                    Log.e("HelloTest", "Hello call failed: ${response.code()} - ${response.message()}")
-                }
+    private  fun observeViewModel()
+    {
+        viewModel.registrationResult.observe(this)
+        {
+                (success, message) ->
+                 showLoading(false)
+            if(success)
+            {
+                startActivity(Intent(this,MainActivity::class.java))
+                finish()
             }
+            else
+            {
+                showError(message)
+            }
+        }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e("HelloTest", "Network error: ${t.localizedMessage}", t)
-            }
-        })
+    }
+
+
+    private fun showLoading(show: Boolean) {
+        pbar.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     private fun showError(message: String) {
@@ -156,4 +183,7 @@ class Registration : AppCompatActivity() {
         rerr.text = message
         rerr.visibility = TextView.VISIBLE
     }
+
+
+
 }
