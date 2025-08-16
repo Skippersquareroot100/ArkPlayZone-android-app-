@@ -34,9 +34,8 @@ class MainActivity : AppCompatActivity() {
         val sp= SharedPrefManager(this)
         val token = sp.getToken()
         Log.d("TOKEN", token ?: "No token found")
-        if (!token.isNullOrEmpty() && token.startsWith("Bearer "))
+        if (!token.isNullOrEmpty() && token.startsWith("Bearer ") && !sp.isTokenExpired())
         {
-
             startActivity(Intent(this, UserDashBoard::class.java))
             finish()
             return
@@ -82,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             if(success)
             {
                 val sp = SharedPrefManager(this)
-                sp.saveToken(tokenOrMessage)
+                sp.saveUser(email.text.toString(),tokenOrMessage,3600)
                 Log.d("TOKEN", tokenOrMessage ?: "No token found")
 
                 startActivity(Intent(this,UserDashBoard::class.java))
@@ -102,7 +101,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         forgetpass.setOnClickListener {
-
+           val intent = Intent(this, ForgetPassword::class.java)
+            startActivity(intent)
         }
     }
 

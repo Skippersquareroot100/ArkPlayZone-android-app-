@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D2EBD3"
+    tools:context=".view.PassReset">
+
+    <TextView
+        android:id="@+id/fotter4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        android:text="All Rights Reserved © 2025 - ARKEVER LTD"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/subHeader2"
+        android:layout_width="366dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="13dp"
+        android:paddingLeft="5dp"
+        android:text="Enter your password here"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="370dp"
+        android:layout_height="112dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="13dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="50dp"
+        android:text="Reset your password"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="358dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/edittext_border"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subHeader2" />
+
+    <EditText
+        android:id="@+id/editTextText3"
+        android:layout_width="358dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/edittext_border"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+
+    <Button
+        android:id="@+id/passresetbtn"
+        android:layout_width="347dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="26dp"
+        android:backgroundTint="#4E7800"
+        android:text="submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="340dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="13dp"
+        android:visibility="gone"
+        android:textAlignment="center"
+        android:textColor="#F00000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passresetbtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
