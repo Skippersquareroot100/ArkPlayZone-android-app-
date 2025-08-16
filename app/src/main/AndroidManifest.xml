@@ -19,28 +19,28 @@
             android:value="ca-app-pub-7162021929851912~3011751033" />
 
         <activity
-            android:name=".Registration"
+            android:name=".view.Registration"
             android:exported="false" />
         <activity
-            android:name=".Profile"
+            android:name=".view.Profile"
             android:exported="false" />
         <activity
-            android:name=".Notifications"
+            android:name=".view.Notifications"
             android:exported="false" />
         <activity
-            android:name=".EmployeeDashboard"
+            android:name=".view.EmployeeDashboard"
             android:exported="false" />
         <activity
-            android:name=".ManagerDashBoard"
+            android:name=".view.ManagerDashBoard"
             android:exported="false" />
         <activity
-            android:name=".AdminDashBoard"
+            android:name=".view.AdminDashBoard"
             android:exported="false" />
         <activity
-            android:name=".UserDashBoard"
+            android:name=".view.UserDashBoard"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

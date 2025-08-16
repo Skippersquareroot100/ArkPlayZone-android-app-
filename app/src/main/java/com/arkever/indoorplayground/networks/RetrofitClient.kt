@@ -1,4 +1,4 @@
-package com.arkever.indoorplayground
+package com.arkever.indoorplayground.networks
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.0.103:10000/manager/" // Ensure trailing slash!
+    private const val BASE_URL = "http://10.0.2.2:10000/manager/"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
