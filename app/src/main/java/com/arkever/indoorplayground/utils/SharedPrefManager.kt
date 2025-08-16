@@ -7,27 +7,41 @@ class SharedPrefManager(context:Context) {
 
     private  val PREF_NAME = "jwt_token_prefs"
     private  val KEY_TOKEN = "token"
+    private  val EMAIL_KEY = "email"
+    private  val EXPIRES_AT_KEY = "expires_at"
+
 
     private  val sharePref: SharedPreferences =
         context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE)
 
 
-    fun saveToken(token :String)
+    fun saveUser(email:String ,token :String, expiresInSeconds:Long)
     {
-        val editor = sharePref.edit()
-        editor.putString(KEY_TOKEN, "Bearer $token")
-        editor.apply()
+        val expiresAT = System.currentTimeMillis() + expiresInSeconds*1000
+        sharePref.edit().putString(EMAIL_KEY,email)
+            .putString(KEY_TOKEN,token)
+            .putLong(EXPIRES_AT_KEY,expiresAT)
+            .apply()
     }
 
     fun getToken():String?
     {
         return  sharePref.getString(KEY_TOKEN, null)
     }
+    fun getEmail():String?
+    {
+        return sharePref.getString(EMAIL_KEY, null)
+    }
+    fun isTokenExpired() :Boolean
+    {
+        return  System.currentTimeMillis() >= sharePref.getLong(EXPIRES_AT_KEY, 0)
+    }
+
+
+
     fun clearToken()
     {
-        val editor = sharePref.edit()
-        editor.remove(KEY_TOKEN)
-        editor.apply()
+        sharePref.edit().clear().apply()
     }
 
 

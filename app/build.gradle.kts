@@ -4,8 +4,14 @@ plugins {
 }
 
 android {
+
+
     namespace = "com.arkever.indoorplayground"
     compileSdk = 36
+
+    buildFeatures {
+        dataBinding = true
+    }
 
     defaultConfig {
         applicationId = "com.arkever.indoorplayground"
@@ -33,6 +39,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
 }
 
 dependencies {
