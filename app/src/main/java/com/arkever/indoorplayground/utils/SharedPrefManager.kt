@@ -19,7 +19,7 @@ class SharedPrefManager(context:Context) {
     {
         val expiresAT = System.currentTimeMillis() + expiresInSeconds*1000
         sharePref.edit().putString(EMAIL_KEY,email)
-            .putString(KEY_TOKEN,token)
+            .putString(KEY_TOKEN,"Bearer "+token)
             .putLong(EXPIRES_AT_KEY,expiresAT)
             .apply()
     }

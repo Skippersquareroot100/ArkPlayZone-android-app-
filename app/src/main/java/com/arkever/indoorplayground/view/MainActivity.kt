@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val sp= SharedPrefManager(this)
         val token = sp.getToken()
         Log.d("TOKEN", token ?: "No token found")
-        if (!token.isNullOrEmpty() && token.startsWith("Bearer ") && !sp.isTokenExpired())
+        if (!token.isNullOrEmpty() && token.startsWith("Bearer ") )
         {
             startActivity(Intent(this, UserDashBoard::class.java))
             finish()

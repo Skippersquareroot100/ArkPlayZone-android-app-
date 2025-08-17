@@ -11,17 +11,25 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.arkever.indoorplayground.R
 import com.arkever.indoorplayground.databinding.ActivityOtpBinding
+import com.arkever.indoorplayground.utils.SharedPrefEmail
+import com.arkever.indoorplayground.viewmodel.OTPValidateViewMOdel
 
 class OTP : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
+
+    private lateinit var viewMOdel: OTPValidateViewMOdel
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityOtpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val editTexts = arrayOf(
             binding.one,
@@ -57,21 +65,51 @@ class OTP : AppCompatActivity() {
             })
         }
 
+        showLoading(false)
+
+        viewMOdel = ViewModelProvider(this)[OTPValidateViewMOdel::class.java]
+
+        viewMOdel.otpValidateResult.observe(this, Observer{(success, message)->
+            showLoading(false)
+            if(success)
+            {
+                startActivity(Intent(this, PassReset::class.java))
+                binding.textView5.visibility=View.GONE
+            }
+            else
+            {
+                errorMsg(message)
+            }
+        })
+
 
         binding.otpbtn.setOnClickListener {
-            val optstr = editTexts.joinToString(""){it.text.toString()}
+
+
+            var optstr = editTexts.joinToString(""){it.text.toString()}
+
+
 
             Log.d("myenter","Entered OTP:$optstr")
             if(optstr.length<6)
             {
                errorMsg("Invalid OTP")
+                showLoading(false)
             }
             else
             {
-                val intent = Intent(this, PassReset::class.java)
-                startActivity(intent)
+                showLoading(true)
+                val sp = SharedPrefEmail(this)
+                val email= sp.getFEmail().toString()
+                Log.d("myemail","here: $email")
+                val otp = optstr
+                viewMOdel.vrifyOTP(email,otp)
             }
         }
+    }
+
+    private fun showLoading(show: Boolean) {
+        binding.poBar.visibility = if (show) View.VISIBLE else View.GONE
     }
     fun errorMsg(err:String)
     {
