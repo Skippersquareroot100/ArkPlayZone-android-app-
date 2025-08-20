@@ -44,6 +44,9 @@ android {
 
 dependencies {
 
+
+    implementation("androidx.fragment:fragment:1.6.1")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -57,4 +60,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }

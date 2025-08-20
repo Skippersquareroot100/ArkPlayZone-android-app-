@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         val sp= SharedPrefManager(this)
         val token = sp.getToken()
+
         Log.d("TOKEN", token ?: "No token found")
         if (!token.isNullOrEmpty() && token.startsWith("Bearer ") )
         {
