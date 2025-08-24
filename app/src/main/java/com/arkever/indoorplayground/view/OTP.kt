@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -73,6 +74,7 @@ class OTP : AppCompatActivity() {
             showLoading(false)
             if(success)
             {
+                Toast.makeText(this,"OTP Verified Successfully", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, PassReset::class.java))
                 binding.textView5.visibility=View.GONE
             }

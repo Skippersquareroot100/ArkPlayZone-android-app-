@@ -8,7 +8,6 @@
     android:layout_height="match_parent">
 
 
-    <!-- FrameLayout for fragments -->
 
     <ImageView
         android:id="@+id/imageView2"
