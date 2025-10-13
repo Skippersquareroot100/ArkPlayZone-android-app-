@@ -17,7 +17,6 @@
         android:textColor="#293F02"
         android:textSize="24sp"
         android:textStyle="bold"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,304 +27,276 @@
         android:layout_height="60dp"
         android:visibility="gone"
         android:indeterminate="true"
-        app:layout_constraintTop_toTopOf="parent"
         android:indeterminateDrawable="@drawable/progressbar_circle"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <!-- ScrollView wrapper so whole form can scroll -->
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:gravity="center"
-        android:layout_marginEnd="20dp"
-        android:stretchColumns="*"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name">
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:stretchColumns="*"
+            android:gravity="center">
 
-        <TableRow android:padding="8dp">
+            <!-- Your TableRows stay exactly same -->
+            <TableRow android:padding="8dp">
 
-            <EditText
-                android:id="@+id/fname"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:textSize="16dp"
-                android:hint="First Name"
-                android:inputType="text" />
+                <EditText
+                    android:id="@+id/fname"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:hint="First Name"
+                    android:inputType="text" />
 
-            <EditText
-                android:id="@+id/mname"
-                android:layout_width="0dp"
-                android:textSize="16dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:hint="Middle Name"
-                android:inputType="text" />
+                <EditText
+                    android:id="@+id/mname"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:hint="Middle Name"
+                    android:inputType="text" />
 
-            <EditText
-                android:id="@+id/lname"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
+                <EditText
+                    android:id="@+id/lname"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:hint="Last Name"
+                    android:inputType="text" />
+            </TableRow>
 
-                android:textSize="16dp"
-                android:hint="Last Name"
-                android:inputType="text" />
-        </TableRow>
+            <TableRow android:padding="8dp">
 
+                <EditText
+                    android:id="@+id/city"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:hint="City"
+                    android:inputType="text" />
 
-        <TableRow android:padding="8dp">
+                <EditText
+                    android:id="@+id/postalcode"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:hint="Postal Code"
+                    android:textSize="16sp"
+                    android:inputType="text" />
 
-            <EditText
-                android:id="@+id/city"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:textSize="16dp"
-                android:hint="City"
-                android:inputType="text" />
+                <EditText
+                    android:id="@+id/street"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:hint="Street No"
+                    android:textSize="16sp"
+                    android:inputType="text" />
+            </TableRow>
 
-            <EditText
-                android:id="@+id/postalcode"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:hint="Postal Code"
-                android:textSize="16dp"
+            <TableRow android:padding="8dp">
+                <EditText
+                    android:id="@+id/sname"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:hint="Street Name"
+                    android:textSize="16sp"
+                    android:inputType="text" />
 
-                android:inputType="text" />
+                <EditText
+                    android:id="@+id/apartment"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:hint="Apartment"
+                    android:inputType="text" />
+            </TableRow>
 
-            <EditText
-                android:id="@+id/street"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:hint="Street No"
-                android:textSize="16dp"
+            <TableRow android:padding="8dp">
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:textSize="16sp"
+                    android:inputType="textEmailAddress" />
+            </TableRow>
 
-                android:inputType="text" />
-        </TableRow>
+            <TableRow android:padding="8dp">
+                <EditText
+                    android:id="@+id/editTextPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Phone"
+                    android:textSize="16sp"
+                    android:inputType="phone" />
+            </TableRow>
 
+            <TableRow android:padding="8dp">
+                <EditText
+                    android:id="@+id/pass"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:hint="Password"
+                    android:inputType="textPassword" />
+            </TableRow>
 
-        <TableRow android:padding="8dp">
+            <TableRow android:padding="8dp">
+                <EditText
+                    android:id="@+id/cpass"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword" />
+            </TableRow>
 
-            <EditText
-                android:id="@+id/sname"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:hint="street name"
-                android:textSize="16dp"
+            <TableRow android:padding="8dp">
+                <Button
+                    android:id="@+id/regis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="#4E7800"
+                    android:text="Register" />
+            </TableRow>
 
-                android:inputType="text" />
+            <TableRow android:padding="8dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/apartment"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:textSize="16dp"
+                    <TextView
+                        android:id="@+id/registraionerror"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#F00000"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        android:text=" " />
 
-                android:hint="apartment"
-                android:inputType="textEmailAddress" />
-        </TableRow>
+                    <TextView
+                        android:id="@+id/logpage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Have an Account? Login here" />
+                </LinearLayout>
+            </TableRow>
 
+            <TableRow android:padding="8dp">
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="─────────  or  ─────────" />
+            </TableRow>
 
-        <TableRow android:padding="8dp">
-
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="email"
-                android:textSize="16dp"
-
-                android:inputType="textEmailAddress" />
-
-        </TableRow>
-
-
-        <TableRow android:padding="8dp">
-
-            <EditText
-                android:id="@+id/editTextPhone"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="phone"
-
-                android:textSize="16dp"
-
-                android:inputType="phone" />
-        </TableRow>
-
-
-
-        <TableRow android:padding="8dp">
-
-            <EditText
-                android:id="@+id/pass"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textSize="16dp"
-                android:hint="password"
-
-                android:inputType="textPassword" />
-        </TableRow>
-
-
-        <TableRow android:padding="8dp">
-
-            <EditText
-                android:id="@+id/cpass"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textSize="16dp"
-
-                android:hint="confirm password"
-                android:inputType="textPassword" />
-        </TableRow>
-
-        <TableRow android:padding="8dp">
-
-            <Button
-                android:id="@+id/regis"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:backgroundTint="#4E7800"
-                android:text="Register" />
+                android:layout_height="48dp"
+                android:padding="8dp">
 
-        </TableRow>
+                <ImageView
+                    android:id="@+id/imageButtonnone"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#D2EBD3"
+                    android:scaleType="fitCenter" />
 
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#D2EBD3"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/google_icons_09_512_removebg_preview" />
 
-           <TableRow android:padding="8dp">
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#D2EBD3"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/facebook_logo_facebook_icon_transparent_free_png_removebg_preview" />
 
-         <!-- -->
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:gravity="center"
-                   android:layout_weight="1"
-                   android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#D2EBD3"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/png_clipart_twitter_twitter_thumbnail_removebg_preview" />
 
-                   <TextView
-                       android:id="@+id/registraionerror"
-                       android:layout_width="match_parent"
-                       android:layout_weight="1"
-                       android:gravity="center"
-                       android:textColor="#F00000"
-                       android:textStyle="bold"
-                       android:layout_height="wrap_content"
-                       android:visibility="gone"
-                       android:text=" " />
+                <ImageView
+                    android:id="@+id/imageButtonnone1"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#D2EBD3"
+                    android:scaleType="fitCenter" />
+            </TableRow>
 
-                   <TextView
-                       android:id="@+id/logpage"
-                       android:layout_width="match_parent"
-                       android:layout_weight="1"
-                       android:gravity="center"
-                       android:layout_height="wrap_content"
-                       android:textStyle="bold"
-                       android:text="Have an Account? Login here" />
-
-               </LinearLayout>
-           </TableRow>
-        <TableRow android:padding="8dp">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:text="─────────  or  ─────────" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="297dp"
-            android:layout_height="48dp"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/imageButtonnone"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_weight="1"
-                android:backgroundTint="#D2EBD3"
-                android:contentDescription="Login with Twitter"
-                android:scaleType="fitCenter"
-                />
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:backgroundTint="#D2EBD3"
-                android:contentDescription="Login with Twitter"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/google_icons_09_512_removebg_preview" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:backgroundTint="#D2EBD3"
-                android:contentDescription="Login with Twitter"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/facebook_logo_facebook_icon_transparent_free_png_removebg_preview" />
-
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="50dp"
-                android:backgroundTint="#D2EBD3"
-                android:contentDescription="Login with Twitter"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/png_clipart_twitter_twitter_thumbnail_removebg_preview" />
-            <ImageView
-                android:id="@+id/imageButtonnone1"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_weight="1"
-                android:backgroundTint="#D2EBD3"
-                android:contentDescription="Login with Twitter"
-                android:scaleType="fitCenter"
-                />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="361dp"
-            android:layout_height="21dp"
-            android:padding="8dp">
-
-            <TextView
-                android:id="@+id/textView"
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="All Rights Reserved © 2025 - ARKEVER LTD" />
-        </TableRow>
+                android:padding="8dp">
 
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="All Rights Reserved © 2025 - ARKEVER LTD" />
+            </TableRow>
 
-    </TableLayout>
-
+        </TableLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Fragments.NotificationFragment">
+    android:background="#D2EBD3"
+    tools:context=".view.Fragments.HomeFragment">
 
-
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activityRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="no" />
-
+     
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
 </FrameLayout>
